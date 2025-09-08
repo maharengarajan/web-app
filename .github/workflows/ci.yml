@@ -100,3 +100,17 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/flask-calculator:latest
 
+      # send email notification
+      - name: Send Email Notification
+        if: always()
+        uses: dawidd6/action-send-mail@master
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: GitHub Actions CI Pipeline - ${{ job.status }}
+          body: The CI pipeline has completed with status ${{ job.status }}
+          to: maharengaraja46@gmail.com
+          from: ${{ secrets.EMAIL_USERNAME }}
+
