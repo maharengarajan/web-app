@@ -46,6 +46,13 @@ jobs:
         env:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=maharengarajan_flask-calculator
+            -Dsonar.organization=maharengarajan
+            -Dsonar.sources=src
+            -Dsonar.tests=tests
+            -Dsonar.python.coverage.reportPaths=coverage.xml
 
       # Set up Docker Buildx
       - name: Set up Docker Buildx
