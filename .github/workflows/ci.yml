@@ -48,7 +48,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.projectKey=maharengarajan_flask-calculator
+            -Dsonar.projectKey=maharengarajan_web-app
             -Dsonar.organization=maharengarajan
             -Dsonar.sources=src
             -Dsonar.tests=tests
