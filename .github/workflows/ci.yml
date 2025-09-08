@@ -35,18 +35,17 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pytest pytest-cov
+          pip install pytest pytest-cov pytest-xdist flake8
 
       # Lint code with flake8
       - name: Lint with flake8
         run: |
-          pip install flake8
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 
-      # Run tests with coverage (fail if coverage < 80)
+      # Run tests with coverage parallel (fail if coverage < 80)
       - name: Run pytest with coverage
         run: |
-          pytest --cov=. --cov-report=xml:coverage.xml --cov-fail-under=80
+          pytest -n auto --cov=. --cov-report=xml:coverage.xml --cov-fail-under=80
 
       # Upload coverage report
       - name: Upload coverage report
@@ -110,7 +109,11 @@ jobs:
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: GitHub Actions CI Pipeline - ${{ job.status }}
-          body: The CI pipeline has completed with status ${{ job.status }}
+          body: |
+            The CI pipeline has completed with status ${{ job.status }}
+            Repository: ${{ github.repository }}
+            Branch: ${{ github.ref }}
+            Job Status: ${{ job.status }}
           to: maharengaraja46@gmail.com
           from: ${{ secrets.EMAIL_USERNAME }} 
 
