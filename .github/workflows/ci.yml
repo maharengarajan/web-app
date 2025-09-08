@@ -31,7 +31,8 @@ jobs:
       # Run tests with coverage (fail if coverage < 80)
       - name: Run pytest with coverage
         run: |
-          pytest --cov=. --cov-fail-under=80
+          pytest --cov=. --cov-report=xml --cov-fail-under=80
+
 
       # Upload coverage report
       - name: Upload coverage report
@@ -53,6 +54,7 @@ jobs:
             -Dsonar.sources=src
             -Dsonar.tests=tests
             -Dsonar.python.coverage.reportPaths=coverage.xml
+            -X
 
       # Set up Docker Buildx
       - name: Set up Docker Buildx
