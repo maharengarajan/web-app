@@ -5,6 +5,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Copy requirements (if you have one) or install Flask directly
+RUN pip install --upgrade pip setuptools
 COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
