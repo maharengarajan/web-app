@@ -112,5 +112,5 @@ jobs:
           subject: GitHub Actions CI Pipeline - ${{ job.status }}
           body: The CI pipeline has completed with status ${{ job.status }}
           to: maharengaraja46@gmail.com
-          from: ${{ secrets.EMAIL_USERNAME }}
+          from: ${{ secrets.EMAIL_USERNAME }} 
 
