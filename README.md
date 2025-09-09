@@ -35,12 +35,17 @@ python -m pytest tests/test_calculator.py
 uv run app.py
 ```
 
-# configure aws clo
+# configure aws cli
 ``` bash
 aws configure
 ```
 
-# coreate EKS cluster
+# create EKS cluster
 ``` bash
 powershell -ExecutionPolicy Bypass -File setup-eks.ps1
+```
+
+# command to deploy locally
+``` bash
+powershell -ExecutionPolicy Bypass -File deploy-env.ps1 -Environment dev -DockerHubUsername your-username
 ```

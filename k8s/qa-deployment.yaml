@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: qa
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-calculator
+  namespace: qa
+  labels:
+    app: flask-calculator
+    environment: qa
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-calculator
+      environment: qa
+  template:
+    metadata:
+      labels:
+        app: flask-calculator
+    spec:
+      nodeSelector:
+        environment: qa
+      containers:
+      - name: flask-calculator
+        image: maharengarajan/flask-calculator:latest
+        ports:
+        - containerPort: 5000
+        environment:
+        - name: ENVIRONMENT
+          value: "qa"
+        resources:
+          requests:
+            memory: "32Mi"
+            cpu: "25m"
+          limits:
+            memory: "64Mi"
+            cpu: "50m"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-calculator-service
+  namespace: qa
+spec:
+  selector:
+    app: flask-calculator
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: ClusterIP
