@@ -34,3 +34,13 @@ python -m pytest tests/test_calculator.py
 ``` bash
 uv run app.py
 ```
+
+# configure aws clo
+``` bash
+aws configure
+```
+
+# coreate EKS cluster
+``` bash
+powershell -ExecutionPolicy Bypass -File setup-eks.ps1
+```
