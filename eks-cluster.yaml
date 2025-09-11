@@ -1,3 +1,72 @@
+# apiVersion: eksctl.io/v1alpha5
+# kind: ClusterConfig
+
+# metadata:
+#   name: web-app-cluster
+#   region: us-east-1
+
+# nodeGroups:
+#   - name: dev-nodes
+#     instanceType: t2.micro
+#     desiredCapacity: 1
+#     minSize: 1
+#     maxSize: 1
+#     volumeSize: 8
+#     ssh:
+#       allow: false
+#     labels:
+#       environment: dev
+#     iam:
+#       withAddonPolicies:
+#         imageBuilder: true
+#         autoScaler: true
+#         ebs: true
+#         cloudWatch: true
+
+#   - name: qa-nodes
+#     instanceType: t2.micro
+#     desiredCapacity: 1
+#     minSize: 1
+#     maxSize: 1
+#     volumeSize: 8
+#     ssh:
+#       allow: false
+#     labels:
+#       environment: qa
+#     iam:
+#       withAddonPolicies:
+#         imageBuilder: true
+#         autoScaler: true
+#         ebs: true
+#         cloudWatch: true
+
+#   - name: prod-nodes
+#     instanceType: t2.micro
+#     desiredCapacity: 1
+#     minSize: 1
+#     maxSize: 2
+#     volumeSize: 8
+#     ssh:
+#       allow: false
+#     labels:
+#       environment: prod
+#     iam:
+#       withAddonPolicies:
+#         imageBuilder: true
+#         autoScaler: true
+#         ebs: true
+#         cloudWatch: true
+
+# # Use managed add-ons for better cost optimization
+# addons:
+#   - name: vpc-cni
+#     version: latest
+#   - name: coredns
+#     version: latest
+#   - name: kube-proxy
+#     version: latest
+
+
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
@@ -7,57 +76,32 @@ metadata:
 
 nodeGroups:
   - name: dev-nodes
-    instanceType: t2.micro
+    instanceType: t3.micro
     desiredCapacity: 1
     minSize: 1
     maxSize: 1
     volumeSize: 8
-    ssh:
-      allow: false
     labels:
       environment: dev
-    iam:
-      withAddonPolicies:
-        imageBuilder: true
-        autoScaler: true
-        ebs: true
-        cloudWatch: true
 
   - name: qa-nodes
-    instanceType: t2.micro
+    instanceType: t3.micro
     desiredCapacity: 1
     minSize: 1
     maxSize: 1
     volumeSize: 8
-    ssh:
-      allow: false
     labels:
       environment: qa
-    iam:
-      withAddonPolicies:
-        imageBuilder: true
-        autoScaler: true
-        ebs: true
-        cloudWatch: true
 
   - name: prod-nodes
-    instanceType: t2.micro
+    instanceType: t3.micro
     desiredCapacity: 1
     minSize: 1
-    maxSize: 2
+    maxSize: 1
     volumeSize: 8
-    ssh:
-      allow: false
     labels:
       environment: prod
-    iam:
-      withAddonPolicies:
-        imageBuilder: true
-        autoScaler: true
-        ebs: true
-        cloudWatch: true
 
-# Use managed add-ons for better cost optimization
 addons:
   - name: vpc-cni
     version: latest
