@@ -15,7 +15,7 @@ else {
 
 # Create EKS Cluster
 Write-Host "Creating EKS Cluster (this may take 10-15 minutes)..." -ForegroundColor Yellow
-eksctl create cluster -f eks-cluster.yml
+eksctl create cluster -f eks-cluster.yaml
 
 # Update kubeconfig
 Write-Host "Updating kubeconfig..." -ForegroundColor Yellow

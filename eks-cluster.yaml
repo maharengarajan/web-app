@@ -58,7 +58,7 @@ nodeGroups:
         cloudWatch: true
 
 # Use managed add-ons for better cost optimization
-add-ons:
+addons:
   - name: vpc-cni
     version: latest
   - name: coredns

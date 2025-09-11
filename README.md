@@ -49,3 +49,8 @@ powershell -ExecutionPolicy Bypass -File setup-eks.ps1
 ``` bash
 powershell -ExecutionPolicy Bypass -File deploy-env.ps1 -Environment dev -DockerHubUsername your-username
 ```
+
+# delete EKS cluster
+``` bash
+eksctl delete cluster --name web-app-cluster --region us-east-1
+```
